@@ -58,6 +58,11 @@
    jobpulse/
    │
    ├── producer/
+      │
+      ├── producer.py
+      ├── scraper.py
+      ├── utils.py
+      └── config.py
    ├── consumer/
    ├── etl/
    ├── db/
