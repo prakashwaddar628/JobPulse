@@ -54,28 +54,33 @@
     ML (Anomaly Detection)
  
 ## initial Folder Structure
-
-   jobpulse/
-   │
-   ├── producer/
+      jobpulse/
       │
-      ├── producer.py
-      ├── scraper.py
-      ├── utils.py
-      └── config.py
-   ├── consumer/
-   ├── etl/
-   ├── db/
-   ├── dashboard/
-   ├── ml/
-   ├── config/
-   ├── tests/
-   ├── docs/
-   │
-   ├── docker-compose.yml
-   ├── requirements.txt
-   ├── README.md
-   └── .env.example
+      ├── producer/
+         │
+         ├── producer.py
+         ├── scraper.py
+         ├── utils.py
+         └── config.py
+      ├── consumer/
+         │
+         ├── consumer.py
+         ├── db_postgres.py
+         ├── db_mongo.py
+         ├── etl.py
+         └── config.py
+      ├── etl/
+      ├── db/
+      ├── dashboard/
+      ├── ml/
+      ├── config/
+      ├── tests/
+      ├── docs/
+      │
+      ├── docker-compose.yml
+      ├── requirements.txt
+      ├── README.md
+      └── .env.example
 
 ## Setup
 
