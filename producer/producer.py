@@ -4,6 +4,8 @@ import time
 from scraper import fetch_jobs
 from utils import is_duplicate
 
+import random
+
 producer = KafkaProducer(
     bootstrap_servers="localhost:9092",
     value_serializer=lambda v: json.dumps(v).encode("utf-8"),
@@ -11,6 +13,24 @@ producer = KafkaProducer(
 )
 
 TOPIC = "jobs_topic"
+
+def get_mock_jobs():
+    roles = ["Software Engineer", "Data Scientist", "Product Manager", "UX Designer", "DevOps Engineer"]
+    skills = [
+        ["Python", "SQL"],
+        ["Python", "Machine Learning"],
+        ["Python", "Java", "SQL", "AWS", "Docker", "Kubernetes"],
+        ["Python", "JavaScript", "React", "Node.js"],
+        ["Python", "AWS", "Docker", "Kubernetes"]
+    ]
+
+    return {
+        "title": random.choice(roles),
+        "company": f"DemoCorp",
+        "location": "Remote",
+        "skills": random.choice(skills),
+        "timestamp": time.time()
+    }
 
 def send_to_kafka(job):
     try:
@@ -25,9 +45,10 @@ def run():
         jobs = fetch_jobs()
         
         if not jobs:
-            print("No jobs found, retrying in 60 seconds...")
-            time.sleep(10)
-            continue
+            print("Scrapped failed, using Mock data...")
+            jobs = [get_mock_jobs() for _ in range(5)]
+            # time.sleep(10)
+            # continue
         
         for job in jobs:
             if is_duplicate(job):
