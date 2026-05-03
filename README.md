@@ -56,6 +56,10 @@
 ## initial Folder Structure
       jobpulse/
       │
+      ├── api/
+         ├── main.py
+         ├── db.py
+         ├── models.py
       ├── producer/
          │
          ├── producer.py
