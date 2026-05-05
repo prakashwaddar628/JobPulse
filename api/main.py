@@ -1,6 +1,8 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
+
 from api.db import cursor
+from ml.anomaly import detect_anomalies
 
 app = FastAPI()
 
@@ -43,4 +45,4 @@ def get_skills():
         for skill in row[0]:
             skill_count[skill] = skill_count.get(skill, 0) + 1
     
-    return skill_count
+    return detect_anomalies(skill_count)
